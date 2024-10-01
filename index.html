@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بيني وبينك تايمر يا معاذ</title>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #fff;
+      text-align: center;
+      color: #333;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      border: 2px solid #000;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    .time-section {
+      display: flex; /* جعل الوقت في صف */
+      justify-content: center;
+      gap: 10px; /* الفجوة بين كل قسم */
+    }
+
+    .time-value {
+      font-size: 48px;
+      font-weight: bold;
+      color: #000;
+      letter-spacing: 2px;
+    }
+
+    .time-label {
+      font-size: 20px;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 24px;
+      }
+      .time-value {
+        font-size: 36px;
+      }
+      .time-label {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>لحد ما التايمر يصفر يا معاذ</h1>
+    <h1>وهتشوف بنفسك</h1>
+    <h1>فتحي وصل لفين</h1>
+    
+    <div id="countdown" class="time-section">
+      <div>
+        <div class="time-value" id="days">0</div>
+        <div class="time-label">يوم</div>
+      </div>
+      <div>
+        <div class="time-value" id="hours">0</div>
+        <div class="time-label">ساعة</div>
+      </div>
+      <div>
+        <div class="time-value" id="minutes">0</div>
+        <div class="time-label">دقيقة</div>
+      </div>
+      <div>
+        <div class="time-value" id="seconds">0</div>
+        <div class="time-label">ثانية</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // تحديد تاريخ انتهاء العد التنازلي (1 أكتوبر 2025)
+    var countDownDate = new Date(Date.UTC(2025, 9, 1)).getTime(); // الشهور تبدأ من 0
+
+    // تحديث العداد كل ثانية
+    var x = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+
+      // حساب الأيام، الساعات، الدقائق والثواني المتبقية
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // عرض النتيجة
+      document.getElementById("days").innerHTML = days;
+      document.getElementById("hours").innerHTML = hours;
+      document.getElementById("minutes").innerHTML = minutes;
+      document.getElementById("seconds").innerHTML = seconds;
+
+      // إذا انتهى الوقت
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "انتهى الوقت!";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
